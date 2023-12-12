@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <div>
+        <h2>Учебный портал</h2>
+        <nav>
+            <ul>
+                {% for m in menu %}
+                    <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+                {% endfor%}
+            </ul>
+        </nav>
+        </div>
+</header>
+
+<div class="content_state">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<tr><td valign=top>
+	<div id="footer">
+		<p>&copy; 2023 Частичное или полное копирование информации с данного сайта для распространения на других ресурсах, в том числе и бумажных, строго запрещено.</p>
+	</div>
+</td></tr></table>
+</body>
+</html>
