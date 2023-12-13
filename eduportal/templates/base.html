@@ -18,10 +18,14 @@
         </div>
 </header>
 
-<div class="content_state">
-    {% block content %}
-    {% endblock %}
-</div>
+<ul>
+    {% for n in navigate %}
+    <li><a href="{% url n.url_name %}">{{ n.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% block content %}
+{% endblock %}
 
 <tr><td valign=top>
 	<div id="footer">
