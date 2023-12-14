@@ -33,6 +33,7 @@ def login(request):
 def show_info(request, info_slug):
     info = get_object_or_404(ShowInfo, slug=info_slug)
 
-    return render(request, 'portal/info.html', context={'info': info})
+    return render(request, 'portal/info.html', context={'info': info,
+                                                        'title': info.title})
 
 
