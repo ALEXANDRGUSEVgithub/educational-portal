@@ -7,6 +7,11 @@ from django.urls import reverse
 # Create your models here.
 
 class ShowInfo(models.Model):
+
+    class Meta:
+        verbose_name = 'Основная информация'
+        verbose_name_plural = 'Основная информация'
+
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
     photo = models.ImageField(upload_to='photos/', default=None,
@@ -25,8 +30,11 @@ class ArticlesAndNews(models.Model):
         DRAFT = 0, 'Черновик'
         PUBLISHED = 1, 'Опубликовано'
 
+    class Meta:
+        verbose_name = 'Статьи и новости'
+        verbose_name_plural = 'Статьи и новости'
+
     title = models.CharField(max_length=255, verbose_name='Заголовок')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug',
                             validators=[
                                 MinLengthValidator(5, message="Минимум 5 символов"),
@@ -40,7 +48,8 @@ class ArticlesAndNews(models.Model):
     is_published = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
                                        default=Status.DRAFT, verbose_name="Статус")
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name='Категории', default=None)
-    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True, default=None)
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True, default=None,
+                               verbose_name='Автор')
     author_cat = models.ForeignKey('AuthorCategory', on_delete=models.SET_NULL, related_name='aut_cat',
                                    verbose_name='Категория автора', default=None, null=True)
 
@@ -49,6 +58,10 @@ class ArticlesAndNews(models.Model):
 
 
 class Category(models.Model):
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
 
@@ -57,8 +70,14 @@ class Category(models.Model):
 
 
 class AuthorCategory(models.Model):
+
+    class Meta:
+        verbose_name = 'Категория автора'
+        verbose_name_plural = 'Категории авторов'
+
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
 
     def __str__(self):
         return self.title
+
