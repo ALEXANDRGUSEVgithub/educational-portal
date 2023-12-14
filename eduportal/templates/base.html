@@ -7,7 +7,7 @@
 <body>
 <header>
     <div>
-        <h2>Учебный портал</h2>
+        <h2><a href="/">Учебный портал</a></h2>
         <nav>
             <ul>
                 {% for m in menu %}
@@ -20,7 +20,7 @@
 
 <ul>
     {% for n in navigate %}
-    <li><a href="{% url n.url_name %}">{{ n.title }}</a></li>
+    <li><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></li>
     {% endfor %}
 </ul>
 

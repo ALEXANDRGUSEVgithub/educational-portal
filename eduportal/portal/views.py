@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from portal.models import ShowInfo
 
 # Create your views here.
 
@@ -28,31 +30,9 @@ def login(request):
     return HttpResponse('Войти')
 
 
-def infoforenrollee(request):
-    return HttpResponse('Информация поступающим')
+def show_info(request, info_slug):
+    info = get_object_or_404(ShowInfo, slug=info_slug)
 
-
-def infoforstudents(request):
-    return HttpResponse('Информация студентам')
-
-
-def science(request):
-    return HttpResponse('Наука')
-
-
-def our_projects(request):
-    return HttpResponse('Наши проекты')
-
-
-def schedule(request):
-    return HttpResponse('Расписание')
-
-
-def psychology(request):
-    return HttpResponse('Психологическая помощь')
-
-
-def sdo(request):
-    return HttpResponse('СДО')
+    return render(request, 'portal/info.html', context={'info': info})
 
 
