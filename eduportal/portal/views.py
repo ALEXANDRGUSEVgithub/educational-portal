@@ -1,26 +1,31 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 
-from portal.models import ShowInfo
+from portal.models import ShowInfo, ArticlesAndNews
+
 
 # Create your views here.
 
-posts = [
-    {'id': 1, 'name': 'Новость номер 1', 'content': 'Какие то новости', 'is_published': True},
-    {'id': 2, 'name': 'Новость номер 2', 'content': 'Какие то новости', 'is_published': True},
-    {'id': 3, 'name': 'Статья', 'content': 'Какая то статья', 'is_published': True},
-    {'id': 4, 'name': 'Новость номер 3', 'content': 'Какие то новости', 'is_published': True},
-    {'id': 5, 'name': 'Новость номер 5', 'content': 'Какие то новости', 'is_published': True},
-]
+
+# def index(request):
+#     data = {
+#         'title': 'Главная станица',
+#     }
+#     return render(request, 'portal/index.html', context=data)
 
 
-def index(request):
-    data = {
-        'title': 'Главная станица',
-        'posts': posts,
+class PortalHome(ListView):
+    model = ArticlesAndNews
+    template_name = 'portal/index.html'
+    context_object_name = 'posts'
+
+    extra_context = {
+        'title': 'Главная страница'
     }
-    return render(request, 'portal/index.html', context=data)
 
+    def get_queryset(self):
+        return ArticlesAndNews.published.all()
 
 def about(request):
     return render(request, 'portal/about.html', context={'title': 'О нас'})
@@ -35,5 +40,23 @@ def show_info(request, info_slug):
 
     return render(request, 'portal/info.html', context={'info': info,
                                                         'title': info.title})
+
+
+class ShowPost(DetailView):
+    model = ArticlesAndNews
+    template_name = 'portal/post.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post']
+        return context
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(ArticlesAndNews.published, slug=self.kwargs[self.slug_url_kwarg])
+
+def show_post(request):
+    return HttpResponse('Пост')
 
 

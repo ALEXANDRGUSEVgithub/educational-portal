@@ -5,6 +5,10 @@ from django.urls import reverse
 
 
 # Create your models here.
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=ArticlesAndNews.Status.PUBLISHED)
+
 
 class ShowInfo(models.Model):
 
@@ -33,6 +37,10 @@ class ArticlesAndNews(models.Model):
     class Meta:
         verbose_name = 'Статьи и новости'
         verbose_name_plural = 'Статьи и новости'
+        ordering = ['-time_create']
+        indexes = [
+            models.Index(fields=['-time_create']),
+        ]
 
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug',
@@ -52,6 +60,11 @@ class ArticlesAndNews(models.Model):
                                verbose_name='Автор')
     author_cat = models.ForeignKey('AuthorCategory', on_delete=models.SET_NULL, related_name='aut_cat',
                                    verbose_name='Категория автора', default=None, null=True)
+    objects = models.Manager()
+    published = PublishedManager()
+
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_slug': self.slug})
 
     def __str__(self):
         return self.title

@@ -5,8 +5,14 @@
 <ul>
     {% for p in posts %}
     <li>
-        <h2>{{ p.name }}</h2>
-        <p>{{ p.content }}</p>
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.author}}</p>
+        <p>{{ p.time_create }}</p>
+        {% autoescape off %}
+	    {{p.content|linebreaks|truncatewords:40}}
+        {% endautoescape %}
+
+        <p><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
         <hr>
     </li>
     {% endfor %}
