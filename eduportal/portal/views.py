@@ -41,6 +41,18 @@ def show_info(request, info_slug):
     return render(request, 'portal/info.html', context={'info': info,
                                                         'title': info.title})
 
+class ShowMainInfo(DetailView):
+    model = ShowInfo
+    template_name = 'portal/info.html'
+    slug_url_kwarg = 'info_slug'
+    context_object_name = 'info'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['info']
+        return context
+
+
 
 class ShowPost(DetailView):
     model = ArticlesAndNews
