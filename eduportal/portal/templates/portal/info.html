@@ -6,6 +6,9 @@
 {% if info.photo %}
 <img class="img-article-left" src="{{info.photo.url}}"></p>
 {% endif %}
+{% if info.file %}
+<a href="{{info.file.url}}">Скачать</a>
+{% endif %}
 <p>{{ info.content }}</p>
 
 {% endblock %}

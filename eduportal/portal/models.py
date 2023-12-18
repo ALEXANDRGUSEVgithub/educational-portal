@@ -20,6 +20,8 @@ class ShowInfo(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
     photo = models.ImageField(upload_to='photos/info', default=None,
                               blank=True, null=True, verbose_name='Фото')
+    file = models.FileField(upload_to='file/%Y/%m/%d/', default=None,
+                            blank=True, null=True, verbose_name='Файлы')
     content = models.TextField(blank=True, verbose_name='Текст статьи')
 
     def __str__(self):
@@ -48,6 +50,8 @@ class ArticlesAndNews(models.Model):
                                 MinLengthValidator(5, message="Минимум 5 символов"),
                                 MaxLengthValidator(100, message="Максимум 100 символов")
                             ])
+    file = models.FileField(upload_to='file/%Y/%m/%d/', default=None,
+                            blank=True, null=True, verbose_name='Файлы')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None,
                               blank=True, null=True, verbose_name='Фото')
     content = models.TextField(blank=True, verbose_name='Текст статьи')

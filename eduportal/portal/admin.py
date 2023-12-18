@@ -7,14 +7,14 @@ admin.site.index_title = "Управление порталом"
 
 @admin.register(ShowInfo)
 class ShowInfoAdmin(admin.ModelAdmin):
-    fields = ['title', 'slug', 'photo', 'content']
+    fields = ['title', 'slug', 'photo', 'file', 'content']
     list_display = ('title',)
     list_display_links = ('title',)
 
 
 @admin.register(ArticlesAndNews)
 class ArticlesAndNewsAdmin(admin.ModelAdmin):
-    fields = ['title', 'slug', 'photo', 'content', 'is_published', 'cat', 'author_cat']
+    fields = ['title', 'slug', 'photo', 'file', 'content', 'is_published', 'cat', 'author_cat']
     list_display = ('title', 'time_create', 'cat', 'author', 'is_published')
     list_display_links = ('title', )
 
