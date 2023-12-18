@@ -1,0 +1,69 @@
+/* Custom styles for the header */
+body {
+    padding-top: 56px;
+    background-color: #f8f9fa; /* Light gray color */
+}
+
+.navbar-custom {
+            background-color: #343a40; /* Dark blue color */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #ffffff; /* White color */
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: #ffffff; /* White color */
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #007bff; /* Hover color */
+}
+
+.nav-block {
+    background-color: #f8f9fa; /* Light gray color */
+    padding: 15px;
+    border: 1px solid #ddd; /* Top border color */
+}
+
+.nav-block ul {
+    padding: 0;
+    list-style-type: none; /* Remove list item bullets */
+}
+
+.nav-block li {
+    border-top: 1px solid #ddd; /* Top border color for each list item */
+    border-bottom: 1px solid #ddd; /* Bottom border color for each list item */
+    margin: 0;
+    padding: 8px 0;
+}
+
+.nav-block li:first-child {
+    border-top: none; /* Remove top border for the first list item */
+        }
+
+.nav-block li:last-child {
+    border-bottom: none; /* Remove bottom border for the last list item */
+}
+
+.footer {
+    background-color: #f8f9fa; /* Dark blue color */
+    color: black; /* White color */
+    padding: 30px 0;
+    width: 100%; /* Make the footer full-width */
+}
+
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer .col-md-6 {
+    margin-bottom: 20px;
+}
+
+.footer .col-md-6 p {
+    margin-bottom: 5px;
+}
