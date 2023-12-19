@@ -22,7 +22,8 @@ from eduportal import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('portal.urls'))
+    path('', include('portal.urls')),
+    path("__debug__/", include("debug_toolbar.urls"))
 ]
 
 if settings.DEBUG:

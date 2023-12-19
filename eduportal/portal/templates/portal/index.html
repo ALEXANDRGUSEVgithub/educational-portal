@@ -1,21 +1,33 @@
-{% extends 'base_test.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<ul>
-    {% for p in posts %}
-    <li>
-        <h2>{{ p.title }}</h2>
-        <p>{{ p.author}}</p>
-        <p>{{ p.time_create }}</p>
-        {% autoescape off %}
-	    {{p.content|linebreaks|truncatewords:40}}
-        {% endautoescape %}
-
-        <p><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
-        <hr>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container mt-4 content">
+    <div class="row">
+        <div class="col-md-11">
+            <h1>Новости и статьи</h1>
+            <ul class="article-list">
+                {% for p in posts %}
+                <li class="article-list-item">
+                    <div class="article-content">
+                        <h2>{{ p.title }}</h2>
+                        {% if p.photo %}
+                            <img class="article-image" src="{{p.photo.url}}">
+                        {% endif %}
+                        <div class="article-text">
+                            <p>Автор: {{ p.author.username|default:'Неизвестен' }}</p>
+                            {% autoescape off %}
+                            {{p.content|linebreaks|truncatewords:40}}
+                            {% endautoescape %}
+                            <p>{{ p.time_create }}</p>
+                        </div>
+                        <p><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,57 +1,57 @@
-/* Custom styles for the header */
+
 body {
     padding-top: 56px;
-    background-color: #f8f9fa; /* Light gray color */
+    background-color: #f8f9fa;
 }
 
 .navbar-custom {
-            background-color: #343a40; /* Dark blue color */
+            background-color: #343a40;
 }
 
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: #ffffff; /* White color */
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-nav .nav-link {
-    color: #ffffff; /* White color */
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-nav .nav-link:hover {
-    color: #007bff; /* Hover color */
+    color: #007bff;
 }
 
 .nav-block {
-    background-color: #f8f9fa; /* Light gray color */
+    background-color: #f8f9fa;
     padding: 15px;
-    border: 1px solid #ddd; /* Top border color */
+    border: 1px solid #ddd;
 }
 
 .nav-block ul {
     padding: 0;
-    list-style-type: none; /* Remove list item bullets */
+    list-style-type: none;
 }
 
 .nav-block li {
-    border-top: 1px solid #ddd; /* Top border color for each list item */
-    border-bottom: 1px solid #ddd; /* Bottom border color for each list item */
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     margin: 0;
     padding: 8px 0;
 }
 
 .nav-block li:first-child {
-    border-top: none; /* Remove top border for the first list item */
+    border-top: none;
         }
 
 .nav-block li:last-child {
-    border-bottom: none; /* Remove bottom border for the last list item */
+    border-bottom: none;
 }
 
 .footer {
-    background-color: #f8f9fa; /* Dark blue color */
-    color: black; /* White color */
+    background-color: #f8f9fa;
+    color: black;
     padding: 30px 0;
-    width: 100%; /* Make the footer full-width */
+    width: 100%;
 }
 
 .footer .row {
@@ -67,3 +67,38 @@ body {
 .footer .col-md-6 p {
     margin-bottom: 5px;
 }
+
+
+.article-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.article-list-item {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.article-list-item:first-child {
+    border-top: none;
+}
+
+.article-list-item:last-child {
+    border-bottom: none;
+}
+
+.article-list-item {
+    display: flex;
+}
+
+.article-image {
+    max-width: 150px;
+    max-height: 100%;
+    margin-right: 20px;
+    margin-bottom: 10px
+}
+
+.article-text {
+    flex-grow: 1;
