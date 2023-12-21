@@ -122,3 +122,18 @@ img#img-post {
     object-fit: cover;
     margin-bottom: 20px
 }
+
+.download-button {
+  display: inline-block;
+  background-color: #1753b3;
+  padding: 5px;
+}
+
+.download-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.download-button a:hover {
+  color: blue;
+}
