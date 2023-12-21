@@ -8,9 +8,14 @@ body {
             background-color: #343a40;
 }
 
-.navbar-custom .navbar-brand,
+.navbar-custom ,
 .navbar-custom .navbar-text {
     color: #ffffff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    margin-left: 15px;
 }
 
 .navbar-custom .navbar-nav .nav-link {
@@ -102,3 +107,18 @@ body {
 
 .article-text {
     flex-grow: 1;
+}
+
+img#img-info {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px
+}
+
+img#img-post {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px
+}
