@@ -62,8 +62,6 @@ class ArticlesAndNews(models.Model):
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name='Категории', default=None)
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='posts', null=True, default=None,
                                verbose_name='Автор')
-    author_cat = models.ForeignKey('AuthorCategory', on_delete=models.SET_NULL, related_name='aut_cat',
-                                   verbose_name='Категория автора', default=None, null=True)
     objects = models.Manager()
     published = PublishedManager()
 
@@ -78,19 +76,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
-
-    title = models.CharField(max_length=255, verbose_name='Название')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
-
-    def __str__(self):
-        return self.title
-
-
-class AuthorCategory(models.Model):
-
-    class Meta:
-        verbose_name = 'Категория автора'
-        verbose_name_plural = 'Категории авторов'
 
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')

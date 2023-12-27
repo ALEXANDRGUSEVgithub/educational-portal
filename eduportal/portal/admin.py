@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AuthorCategory, ArticlesAndNews, Category, ShowInfo
+from .models import ArticlesAndNews, Category, ShowInfo
 # Register your models here.
 
 admin.site.site_header = "Панель администрирования учебного портала"
@@ -14,7 +14,7 @@ class ShowInfoAdmin(admin.ModelAdmin):
 
 @admin.register(ArticlesAndNews)
 class ArticlesAndNewsAdmin(admin.ModelAdmin):
-    fields = ['title', 'slug', 'photo', 'file', 'content', 'is_published', 'cat', 'author_cat']
+    fields = ['title', 'slug', 'photo', 'file', 'content', 'is_published', 'cat']
     list_display = ('title', 'time_create', 'cat', 'author', 'is_published')
     list_display_links = ('title', )
 
@@ -23,15 +23,8 @@ class ArticlesAndNewsAdmin(admin.ModelAdmin):
 
     list_per_page = 5
     search_fields = ['title']
-    list_filter = ['is_published', 'cat', 'author_cat']
+    list_filter = ['is_published', 'cat']
     prepopulated_fields = {"slug": ("title",)}
-
-
-
-@admin.register(AuthorCategory)
-class AuthorCategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', )
-    list_display_links = ('title', )
 
 
 @admin.register(Category)
