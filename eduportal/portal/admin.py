@@ -15,7 +15,7 @@ class ShowInfoAdmin(admin.ModelAdmin):
 @admin.register(ArticlesAndNews)
 class ArticlesAndNewsAdmin(admin.ModelAdmin):
     fields = ['title', 'slug', 'photo', 'file', 'content', 'is_published', 'cat']
-    list_display = ('title', 'time_create', 'cat', 'author', 'is_published')
+    list_display = ('title', 'time_create', 'cat', 'is_published')
     list_display_links = ('title', )
 
     ordering = ['-time_create']

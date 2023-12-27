@@ -15,7 +15,6 @@
                             <img class="article-image" src="{{p.photo.url}}">
                         {% endif %}
                         <div class="article-text">
-                            <p>Автор: {{ p.author.username|default:'Неизвестен' }}</p>
                             {% autoescape off %}
                             {{p.content|linebreaks|truncatewords:40}}
                             {% endautoescape %}
