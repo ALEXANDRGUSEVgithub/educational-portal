@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portal.apps.PortalConfig',
     'django_extensions',
-    'debug_toolbar'
+    'users',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
