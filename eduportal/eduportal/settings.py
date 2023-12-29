@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'portal.apps.PortalConfig',
     'users',
     'django_extensions',
-    'users',
     'debug_toolbar',
 ]
 
