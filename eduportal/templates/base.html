@@ -17,8 +17,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="/">Регистрация</a></li>
-        </ul>
+        {% if user.is_authenticated %}
+            <li class="last"><a href="/">{{user.username}}</a> | <a href="{% url 'users:logout' %}">Выйти</a></li>
+        {% else %}
+            <li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
+        {% endif %}
+            </ul>
     </div>
 </nav>
 
