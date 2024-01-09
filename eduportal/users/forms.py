@@ -22,27 +22,28 @@ class RegisterUserForm(UserCreationForm):
     email = forms.EmailField(label="E-mail", widget=forms.EmailInput(attrs={'class': 'form-control'}), required=True)
     first_name = forms.CharField(label="Имя", widget=forms.TextInput(attrs={'class': 'form-control'}), required=True)
     last_name = forms.CharField(label="Фамилия", widget=forms.TextInput(attrs={'class': 'form-control'}), required=True)
+    surname = forms.CharField(label="Отчество", widget=forms.TextInput(attrs={'class': 'form-control'}), required=True)
     date_birth = forms.DateField(label="Дата рождения", widget=forms.SelectDateWidget(years=range(1940, 2010)),
                                  required=True)
-    phone_number = forms.CharField(
-        label="Номер телефона",
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-        required=True,
-        validators=[
-            RegexValidator(
-                regex=r'^\+?1?\d{9,15}$',
-                message="Номер телефона должен быть в формате: +999999999."
-            ),
-        ]
-    )
+    phone_number = forms.CharField(label="Номер телефона", widget=forms.TextInput(attrs={'class': 'form-control'}),
+                                   required=True,
+                                   validators=[
+                                       RegexValidator(
+                                           regex=r'^\+?1?\d{9,15}$',
+                                           message="Номер телефона должен быть в формате: +999999999."
+                                       ),
+                                   ]
+                                   )
 
     class Meta:
         model = get_user_model()
-        fields = ['photo', 'username', 'email', 'phone_number', 'first_name', 'last_name', 'date_birth', 'password1', 'password2']
+        fields = ['photo', 'username', 'email', 'phone_number', 'first_name', 'last_name', 'surname', 'date_birth', 'password1',
+                  'password2']
         labels = {
             'email': 'E-mail',
             'first_name': "Имя",
             'last_name': "Фамилия",
+            'surname': "Отчество",
             'date_birth': 'Дата рождения',
             'phone_number': 'Номер телефона'
         }
@@ -51,6 +52,7 @@ class RegisterUserForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control'}),
             'date_birth': forms.SelectDateWidget(years=range(1940, 2010)),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
         }
@@ -72,4 +74,3 @@ class RegisterUserForm(UserCreationForm):
         if get_user_model().objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError("Такой номер телефона уже существует!")
         return phone_number
-

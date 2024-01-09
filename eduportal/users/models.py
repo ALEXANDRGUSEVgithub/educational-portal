@@ -3,6 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
+    surname = models.CharField(max_length=255, blank=True, null=True, verbose_name='Отчество')
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True, verbose_name="Фотография")
     date_birth = models.DateTimeField(blank=True, null=True, verbose_name="Дата рождения")
     cat_user = models.ForeignKey('CategoryUser', on_delete=models.PROTECT, related_name='users',
