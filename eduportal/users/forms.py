@@ -5,7 +5,8 @@ from django.core.validators import RegexValidator
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label='Логин, E-mail или номер телефона (+79999999999)',
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:

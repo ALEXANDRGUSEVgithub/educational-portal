@@ -147,3 +147,9 @@ LOGOUT_REDIRECT_URL = 'home'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 DEFAULT_USER_IMAGE = MEDIA_URL + 'users/default.png'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'users.authentication.EmailAuthBackend',
+    'users.authentication.NumberAuthBackend',
+]
