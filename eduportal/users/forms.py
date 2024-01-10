@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.core.validators import RegexValidator
 
 
@@ -74,3 +74,32 @@ class RegisterUserForm(UserCreationForm):
         if get_user_model().objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError("Такой номер телефона уже существует!")
         return phone_number
+
+
+class ProfileUserEditForm(forms.ModelForm):
+    username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    email = forms.CharField(disabled=True, label='E-mail', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    phone_number = forms.CharField(disabled=True, label='Номер телефона',
+                                   widget=forms.TextInput(attrs={'class': 'form-input'}))
+    date_birth = forms.DateField(label="Дата рождения", widget=forms.SelectDateWidget(years=range(1940, 2010)),
+                                 required=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ['photo', 'username', 'email', 'date_birth', 'first_name', 'last_name', 'surname', 'phone_number']
+        labels = {
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'surname': 'Отчество'
+        }
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'surname': forms.TextInput(attrs={'class': 'form-input'}),
+        }
+
+
+class UserPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    new_password1 = forms.CharField(label="Новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    new_password2 = forms.CharField(label="Подтверждение пароля", widget=forms.PasswordInput(attrs={'class': 'form-input'}))

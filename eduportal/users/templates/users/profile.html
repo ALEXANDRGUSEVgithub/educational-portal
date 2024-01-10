@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Ваш профиль</h1>
+
+    {% if user.photo %}
+        <img src="{{ user.photo.url }}" class="img-fluid rounded mb-3" alt="Профильное фото">
+    {% else %}
+        <img src="{{ default_image }}" class="img-fluid rounded mb-3" alt="Профильное фото">
+    {% endif %}
+
+    <dl class="row">
+        <dt class="col-sm-3">Логин:</dt>
+        <dd class="col-sm-9">{{ user.username }}</dd>
+
+        <dt class="col-sm-3">Имя:</dt>
+        <dd class="col-sm-9">{{ user.first_name }}</dd>
+
+        <dt class="col-sm-3">Фамилия:</dt>
+        <dd class="col-sm-9">{{ user.last_name }}</dd>
+
+        <dt class="col-sm-3">Отчество:</dt>
+        <dd class="col-sm-9">{{ user.surname }}</dd>
+
+        <dt class="col-sm-3">E-mail:</dt>
+        <dd class="col-sm-9">{{ user.email }}</dd>
+
+        <dt class="col-sm-3">Номер телефона:</dt>
+        <dd class="col-sm-9">{{ user.phone_number }}</dd>
+
+        <dt class="col-sm-3">Дата рождения:</dt>
+        <dd class="col-sm-9">{{ user.date_birth }}</dd>
+
+        {% if user.cat_user_id == 1 %}
+            <dt class="col-sm-3">{{ user.cat_user }}:</dt>
+            <dd class="col-sm-9">{{ user.group_stud }} группы</dd>
+        {% else %}
+            <dt class="col-sm-3">Вы:</dt>
+            <dd class="col-sm-9">{{ user.cat_user }}</dd>
+        {% endif %}
+    </dl>
+
+    <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">Редактировать профиль</a>
+</div>
+{% endblock %}

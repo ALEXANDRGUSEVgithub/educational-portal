@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Редактирование профиля</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if user.photo %}
+        <img src="{{ user.photo.url }}" class="img-fluid rounded mb-3" alt="Профильное фото">
+        {% else %}
+        <img src="{{ default_image }}" class="img-fluid rounded mb-3" alt="Профильное фото">
+        {% endif %}
+
+        <div class="form-error">{{ form.non_field_errors }}</div>
+
+        {% for f in form %}
+        <div class="mb-3">
+            <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}:</label>
+            {{ f }}
+            <div class="form-error">{{ f.errors }}</div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+    <hr>
+
+    <p><a href="{% url 'users:password_change' %}">Сменить пароль</a></p>
+</div>
+{% endblock %}
+
