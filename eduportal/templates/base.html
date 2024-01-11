@@ -16,14 +16,28 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
-            <li class="last"><a href="{% url 'users:profile' %}">{{user.username}}</a> | <a href="{% url 'users:logout' %}">Выйти</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:profile' %}">{{ user.username }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="education/personal-area/">Личный кабинет</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:logout' %}">Выйти</a>
+            </li>
         {% else %}
-            <li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:login' %}">Войти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:register' %}">Регистрация</a>
+            </li>
         {% endif %}
-            </ul>
-    </div>
+    </ul>
+</div>
+
 </nav>
 
 <div class="container mt-4">

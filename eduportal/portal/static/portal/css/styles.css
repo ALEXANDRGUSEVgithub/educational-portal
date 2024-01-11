@@ -138,3 +138,11 @@ img#img-post {
 .download-button a:hover {
   color: blue;
 }
+
+.nav-item:hover {
+    background-color: #007bff;
+}
+
+.nav-item:hover a {
+    color: #ffffff !important;
+}

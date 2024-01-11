@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portal.apps.PortalConfig',
     'users',
+    'education',
     'django_extensions',
     'debug_toolbar',
 ]
