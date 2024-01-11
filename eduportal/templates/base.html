@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link type="text/css" href="{% static 'portal/css/styles.css' %}" rel="stylesheet" />
 </head>
 <body>
@@ -50,17 +51,24 @@
             <div class="nav-block">
                 <h3>Навигационное меню</h3>
                 <ul>
-                    {% if request.path != '/' %}
-                    <li><a href="/">На главную страницу</a></li>
+                    {% if request.path != '/' and request.resolver_match.namespace != 'education' %}
+                        <li><a href="/">На главную страницу</a></li>
                     {% endif %}
-                    {% for n in navigate %}
-                    <li><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></li>
-                    {% endfor %}
+                    {% if request.resolver_match.namespace == 'education' %}
+                        <li><a href="/">Моя группа</a></li>
+                        <li><a href="/">Для студентов</a></li>
+                        <li><a href="/">Тесты</a></li>
+                        <li><a href="/">Библиотека</a></li>
+                    {% else %}
+                        {% for n in navigate %}
+                            <li><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
-      </div>
     </div>
+</div>
 
 <div class="container mt-4">
     <div class="footer">
