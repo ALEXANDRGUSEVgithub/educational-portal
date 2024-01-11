@@ -4,5 +4,5 @@ from . import views
 app_name = 'education'
 
 urlpatterns = [
-    path('personal-area/', views.main)
+    path('personal-area/', views.PersonalArea.as_view(), name='personal-area')
 ]

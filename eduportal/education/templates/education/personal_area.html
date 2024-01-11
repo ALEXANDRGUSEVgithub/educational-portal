@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user_courses %}
+  <h2>Курсы пользователя:</h2>
+  <ul>
+    {% for course in user_courses %}
+      <li>{{ course.title }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Пользователь не привязан к группе или группа не имеет курсов.</p>
+{% endif %}
+
+{% endblock %}

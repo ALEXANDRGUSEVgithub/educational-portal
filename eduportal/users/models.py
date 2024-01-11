@@ -34,6 +34,7 @@ class GroupStudents(models.Model):
         verbose_name_plural = 'Группа студентов'
 
     group = models.CharField(max_length=100, db_index=True, verbose_name='Группа')
+    courses = models.ManyToManyField('education.Courses', related_name='groups_related', verbose_name='Курсы')
     slug = models.SlugField(max_length=100, unique=True, db_index=True, verbose_name='Slug')
 
     def __str__(self):
