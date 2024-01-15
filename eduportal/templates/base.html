@@ -55,7 +55,7 @@
                         <li><a href="/">На главную страницу</a></li>
                     {% endif %}
                     {% if request.resolver_match.namespace == 'education' %}
-                        <li><a href="/">Моя группа</a></li>
+                        <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
                         <li><a href="/">Для студентов</a></li>
                         <li><a href="/">Тесты</a></li>
                         <li><a href="/">Библиотека</a></li>

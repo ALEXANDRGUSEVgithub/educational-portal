@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from education.models import Courses
-from users.models import User
+from users.models import User, GroupStudents
 
 
 class PersonalArea(ListView):
@@ -39,3 +39,17 @@ class ShowCourse(DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(Courses, slug=self.kwargs[self.slug_url_kwarg])
+
+
+class MuGroup(ListView):
+    model = GroupStudents
+    template_name = 'education/my_group_stud.html'
+    context_object_name = 'my_group'
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.group_stud:
+            return user.group_stud
+        else:
+            return None

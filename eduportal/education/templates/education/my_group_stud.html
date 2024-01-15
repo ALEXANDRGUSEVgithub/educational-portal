@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+                <h2 class="mb-4">Моя группа {{my_group}}</h2>
+                <ul class="list-group">
+                    {% for member in my_group.members.all %}
+                        <li class="list-group-item border-0">
+                            <a href="/" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a>
+                        </li>
+                    {% endfor %}
+                        <li class="list-group-item border-0">
+                            <p>Ваш куратор: <a href="/" class="text-dark font-weight-bold stretched-link">{{ my_group.curator.get_full_name }}</a></p>
+                        </li>
+                </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

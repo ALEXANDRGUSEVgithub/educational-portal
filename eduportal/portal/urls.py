@@ -4,8 +4,6 @@ from portal import views
 
 urlpatterns = [
     path('', views.PortalHome.as_view(), name='home'),
-    path('about/', views.about, name='about'),
-    path('login/', views.login, name='login'),
     path('info/<slug:info_slug>/', views.ShowMainInfo.as_view(), name='show_info'),
     path('post/<slug:post_slug>/', views.ShowPost.as_view(), name='post'),
 ]

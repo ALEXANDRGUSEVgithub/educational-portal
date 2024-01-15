@@ -22,6 +22,6 @@ class CategoryUserAdmin(admin.ModelAdmin):
 
 @admin.register(GroupStudents)
 class GroupStudentsAdmin(admin.ModelAdmin):
-    fields = ['group', 'slug', 'courses']
+    fields = ['group', 'slug', 'courses', 'curator', 'members']
     prepopulated_fields = {"slug": ("group",)}
     list_display = ('group', 'slug')

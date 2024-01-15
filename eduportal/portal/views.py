@@ -27,19 +27,6 @@ class PortalHome(ListView):
     def get_queryset(self):
         return ArticlesAndNews.published.all()
 
-def about(request):
-    return render(request, 'portal/about.html', context={'title': 'О нас'})
-
-
-def login(request):
-    return HttpResponse('Войти')
-
-
-def show_info(request, info_slug):
-    info = get_object_or_404(ShowInfo, slug=info_slug)
-
-    return render(request, 'portal/info.html', context={'info': info,
-                                                        'title': info.title})
 
 class ShowMainInfo(DetailView):
     model = ShowInfo

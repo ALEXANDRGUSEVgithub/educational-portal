@@ -13,6 +13,9 @@ class User(AbstractUser):
                                    null=True)
     phone_number = models.CharField(max_length=100, unique=True, blank=True, verbose_name='Номер телефона')
 
+    def get_full_name(self):
+        return str(self.first_name + ' ' + self.last_name + ' ' + self.surname)
+
     def __str__(self):
         return self.username
 
@@ -36,6 +39,9 @@ class GroupStudents(models.Model):
     group = models.CharField(max_length=100, db_index=True, verbose_name='Группа')
     courses = models.ManyToManyField('education.Courses', related_name='groups_related', verbose_name='Курсы')
     slug = models.SlugField(max_length=100, unique=True, db_index=True, verbose_name='Slug')
+    curator = models.ForeignKey('User', blank=True, related_name='curator', verbose_name='Куратор группы',
+                                on_delete=models.SET_NULL, default=None, null=True)
+    members = models.ManyToManyField('User', related_name='group_members', verbose_name='Участники группы')
 
     def __str__(self):
         return self.group
