@@ -13,6 +13,8 @@ class User(AbstractUser):
                                    verbose_name='Группа студента', on_delete=models.PROTECT, default=None,
                                    null=True)
     phone_number = models.CharField(max_length=100, unique=True, blank=True, verbose_name='Номер телефона')
+    courses = models.ManyToManyField('education.Courses', related_name='course_teacher',
+                                    verbose_name='Курсы преподавателя')
 
     def get_full_name(self):
         return str(self.last_name + ' ' + self.first_name + ' ' + self.surname)
