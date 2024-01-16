@@ -26,7 +26,7 @@ class ProfileUsersView(DetailView):
     model = User
     template_name = 'users/user_profile.html'
     pk_url_kwarg = 'user_id'
-    context_object_name = 'user'
+    context_object_name = 'profile_user'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

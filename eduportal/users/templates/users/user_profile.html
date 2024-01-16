@@ -2,10 +2,10 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>{{user.get_full_name}}</h1>
+    <h1>{{profile_user.get_full_name}}</h1>
 
-    {% if user.photo %}
-        <img src="{{ user.photo.url }}" class="img-fluid rounded mb-3" alt="Профильное фото">
+    {% if profile_user.photo %}
+        <img src="{{ profile_user.photo.url }}" class="img-fluid rounded mb-3" alt="Профильное фото">
     {% else %}
         <img src="{{ default_image }}" class="img-fluid rounded mb-3" alt="Профильное фото">
     {% endif %}
@@ -13,20 +13,20 @@
     <dl class="row">
 
         <dt class="col-sm-3">E-mail:</dt>
-        <dd class="col-sm-9">{{ user.email }}</dd>
+        <dd class="col-sm-9">{{ profile_user.email }}</dd>
 
         <dt class="col-sm-3">Номер телефона:</dt>
-        <dd class="col-sm-9">{{ user.phone_number }}</dd>
+        <dd class="col-sm-9">{{ profile_user.phone_number }}</dd>
 
         <dt class="col-sm-3">Дата рождения:</dt>
-        <dd class="col-sm-9">{{ user.date_birth }}</dd>
+        <dd class="col-sm-9">{{ profile_user.date_birth }}</dd>
 
         {% if user.cat_user_id == 1 %}
-            <dt class="col-sm-3">{{ user.cat_user }}:</dt>
-            <dd class="col-sm-9">{{ user.group_stud }} группы</dd>
+            <dt class="col-sm-3">{{ profile_user.cat_user }}:</dt>
+            <dd class="col-sm-9">{{ profile_user.group_stud }} группы</dd>
         {% else %}
             <dt class="col-sm-3">Статус:</dt>
-            <dd class="col-sm-9">{{ user.cat_user }}</dd>
+            <dd class="col-sm-9">{{ profile_user.cat_user }}</dd>
         {% endif %}
     </dl>
 </div>

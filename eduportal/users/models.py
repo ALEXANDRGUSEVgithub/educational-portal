@@ -15,7 +15,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=100, unique=True, blank=True, verbose_name='Номер телефона')
 
     def get_full_name(self):
-        return str(self.first_name + ' ' + self.last_name + ' ' + self.surname)
+        return str(self.last_name + ' ' + self.first_name + ' ' + self.surname)
 
     def get_absolute_url(self):
         return reverse('users:profile_user', kwargs={'user_id': self.pk})
