@@ -3,10 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, TemplateView
+from django.views.generic import CreateView, UpdateView, TemplateView, DetailView
 
 from eduportal import settings
 from users.forms import LoginUserForm, RegisterUserForm, ProfileUserEditForm, UserPasswordChangeForm
+from users.models import User
 
 
 # Create your views here.
@@ -21,6 +22,22 @@ class RegisterUser(CreateView):
     template_name = 'users/register.html'
     extra_context = {'title': "Регистрация"}
     success_url = reverse_lazy('users:login')
+
+
+class ProfileUsersView(DetailView):
+    model = User
+    template_name = 'users/user_profile.html'
+    pk_url_kwarg = 'user_id'
+    context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Профиль пользователя'
+        context['default_image'] = settings.DEFAULT_USER_IMAGE
+        return context
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(User, pk=self.kwargs[self.pk_url_kwarg])
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):

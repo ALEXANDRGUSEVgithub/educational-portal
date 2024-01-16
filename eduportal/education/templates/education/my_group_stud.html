@@ -7,11 +7,11 @@
                 <ul class="list-group">
                     {% for member in my_group.members.all %}
                         <li class="list-group-item border-0">
-                            <a href="/" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a>
+                            <a href="{{ member.get_absolute_url }}" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a>
                         </li>
                     {% endfor %}
                         <li class="list-group-item border-0">
-                            <p>Ваш куратор: <a href="/" class="text-dark font-weight-bold stretched-link">{{ my_group.curator.get_full_name }}</a></p>
+                            <p>Ваш куратор: <a href="{{ my_group.curator.get_absolute_url }}" class="text-dark font-weight-bold stretched-link">{{ my_group.curator.get_full_name }}</a></p>
                         </li>
                 </ul>
         </div>

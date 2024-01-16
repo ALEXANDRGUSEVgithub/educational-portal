@@ -34,4 +34,5 @@ urlpatterns = [
     path('password-change/', views.UserPasswordChange.as_view(), name='password_change'),
     path('password-change/done/', PasswordChangeDoneView.as_view(template_name="users/password_change_done.html"),
          name="password_change_done"),
+    path('profile_user/<int:user_id>', views.ProfileUsersView.as_view(), name='profile_user')
 ]
