@@ -4,13 +4,11 @@ from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, TemplateView, DetailView
-
 from eduportal import settings
 from users.forms import LoginUserForm, RegisterUserForm, ProfileUserEditForm, UserPasswordChangeForm
 from users.models import User
 
 
-# Create your views here.
 class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'users/login.html'

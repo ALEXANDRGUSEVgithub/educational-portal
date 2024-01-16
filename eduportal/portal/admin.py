@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import ArticlesAndNews, Category, ShowInfo
-# Register your models here.
+
 
 admin.site.site_header = "Панель администрирования учебного портала"
 admin.site.index_title = "Управление порталом"
+
 
 @admin.register(ShowInfo)
 class ShowInfoAdmin(admin.ModelAdmin):

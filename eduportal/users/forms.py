@@ -38,7 +38,8 @@ class RegisterUserForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['photo', 'username', 'email', 'phone_number', 'first_name', 'last_name', 'surname', 'date_birth', 'password1',
+        fields = ['photo', 'username', 'email', 'phone_number', 'first_name', 'last_name', 'surname', 'date_birth',
+                  'password1',
                   'password2']
         labels = {
             'email': 'E-mail',
@@ -103,4 +104,5 @@ class ProfileUserEditForm(forms.ModelForm):
 class UserPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     new_password1 = forms.CharField(label="Новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-    new_password2 = forms.CharField(label="Подтверждение пароля", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    new_password2 = forms.CharField(label="Подтверждение пароля",
+                                    widget=forms.PasswordInput(attrs={'class': 'form-input'}))

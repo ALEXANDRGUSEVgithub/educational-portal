@@ -1,9 +1,8 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from education.models import Courses
-from users.models import User, GroupStudents
+from users.models import GroupStudents
 
 
 class PersonalArea(ListView):

@@ -1,4 +1,3 @@
-
 from portal.models import ShowInfo
 
 

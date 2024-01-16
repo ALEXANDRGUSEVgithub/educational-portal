@@ -1,18 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
-
 from portal.models import ShowInfo, ArticlesAndNews
-
-
-# Create your views here.
-
-
-# def index(request):
-#     data = {
-#         'title': 'Главная станица',
-#     }
-#     return render(request, 'portal/index.html', context=data)
 
 
 class PortalHome(ListView):
@@ -40,7 +29,6 @@ class ShowMainInfo(DetailView):
         return context
 
 
-
 class ShowPost(DetailView):
     model = ArticlesAndNews
     template_name = 'portal/post.html'
@@ -55,7 +43,5 @@ class ShowPost(DetailView):
     def get_object(self, queryset=None):
         return get_object_or_404(ArticlesAndNews.published, slug=self.kwargs[self.slug_url_kwarg])
 
-def show_post(request):
-    return HttpResponse('Пост')
 
 

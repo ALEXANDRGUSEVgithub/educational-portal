@@ -1,9 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-
 from users.models import User, CategoryUser, GroupStudents
-
-# admin.site.register(User, UserAdmin)
 
 
 @admin.register(User)
