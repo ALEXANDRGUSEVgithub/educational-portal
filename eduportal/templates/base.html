@@ -55,10 +55,17 @@
                         <li><a href="/">На главную страницу</a></li>
                     {% endif %}
                     {% if request.resolver_match.namespace == 'education' %}
-                        <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
-                        <li><a href="/">Для студентов</a></li>
-                        <li><a href="/">Тесты</a></li>
-                        <li><a href="/">Библиотека</a></li>
+                        {% if request.user.cat_user_id == 1 %}
+                            <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            <li><a href="/">Для студентов</a></li>
+                            <li><a href="/">Тесты</a></li>
+                            <li><a href="/">Библиотека</a></li>
+                        {% elif request.user.cat_user_id == 2 %}
+                            <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            <li><a href="/">Для преподавателей</a></li>
+                            <li><a href="/">Тесты</a></li>
+                            <li><a href="/">Библиотека</a></li>
+                        {% endif %}
                     {% else %}
                         {% for n in navigate %}
                             <li><a href="{{ n.get_absolute_url }}">{{ n.title }}</a></li>
