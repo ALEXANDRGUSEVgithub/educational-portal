@@ -11,12 +11,18 @@ class PersonalArea(ListView):
     context_object_name = 'courses'
 
     def get_queryset(self):
-        user = self.request.user
+        # cat_user_id = 1 - Категория студенты
+        # cat_user_id = 2 - Категория преподаватели
 
-        if user.group_stud:
-            return user.group_stud.courses.all()
-        else:
-            return None
+        user = self.request.user
+        print(user.cat_user_id)
+        if user.cat_user_id == 1:
+            if user.group_stud:
+                return user.group_stud.courses.all()
+            else:
+                return None
+        elif user.cat_user_id == 2:
+            return user.courses.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

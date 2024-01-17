@@ -5,7 +5,7 @@
         <div class="col-md-8">
                 <h2 class="mb-4">Моя группа {{my_group}}</h2>
                 <ul class="list-group">
-                    {% for member in my_group.members.all.order_by.last_name %}
+                    {% for member in my_group.members.all %}
                     {% if member == request.user %}
                         <li class="list-group-item border-0">
                             <p>Вы: <a href="{% url 'users:profile' %}" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a></p>

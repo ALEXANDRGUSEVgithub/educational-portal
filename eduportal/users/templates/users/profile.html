@@ -39,6 +39,10 @@
             <dt class="col-sm-3">Вы:</dt>
             <dd class="col-sm-9">{{ user.cat_user }}</dd>
         {% endif %}
+        {% if user.is_curator %}
+            <dt class="col-sm-3">Кураторство:</dt>
+            <a href="{% url 'education:my_group' %}"><dd class="col-sm-9">{{ user.group_stud }}</dd></a>
+        {% endif %}
     </dl>
 
     <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">Редактировать профиль</a>

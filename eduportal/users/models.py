@@ -4,17 +4,23 @@ from django.urls import reverse
 
 
 class User(AbstractUser):
+    class Status(models.IntegerChoices):
+        NO_CURATOR = 0, 'Не куратор'
+        CURATOR = 1, 'Куратор'
+
     surname = models.CharField(max_length=255, blank=True, verbose_name='Отчество')
     photo = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True, verbose_name="Фотография")
     date_birth = models.DateTimeField(blank=True, verbose_name="Дата рождения")
     cat_user = models.ForeignKey('CategoryUser', on_delete=models.PROTECT, related_name='users',
                                  default=None, null=True, verbose_name='Категория пользователя')
     group_stud = models.ForeignKey('GroupStudents', blank=True, related_name='groups',
-                                   verbose_name='Группа студента', on_delete=models.PROTECT, default=None,
+                                   verbose_name='Группа пользователя', on_delete=models.PROTECT, default=None,
                                    null=True)
     phone_number = models.CharField(max_length=100, unique=True, blank=True, verbose_name='Номер телефона')
     courses = models.ManyToManyField('education.Courses', related_name='course_teacher',
-                                    verbose_name='Курсы преподавателя')
+                                     verbose_name='Курсы преподавателя')
+    is_curator = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
+                                     default=Status.NO_CURATOR, verbose_name="Статус кураторства")
 
     def get_full_name(self):
         return str(self.last_name + ' ' + self.first_name + ' ' + self.surname)

@@ -21,7 +21,7 @@
         <dt class="col-sm-3">Дата рождения:</dt>
         <dd class="col-sm-9">{{ profile_user.date_birth }}</dd>
 
-        {% if user.cat_user_id == 1 %}
+        {% if profile_user.cat_user_id == 1 %}
             <dt class="col-sm-3">{{ profile_user.cat_user }}:</dt>
             <dd class="col-sm-9">{{ profile_user.group_stud }} группы</dd>
         {% else %}

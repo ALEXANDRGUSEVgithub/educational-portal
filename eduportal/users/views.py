@@ -43,7 +43,6 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Добавьте необходимую информацию о профиле
         context['title'] = 'Профиль пользователя'
         context['user'] = self.request.user
         context['default_image'] = settings.DEFAULT_USER_IMAGE

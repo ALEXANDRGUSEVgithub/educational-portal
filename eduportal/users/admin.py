@@ -5,7 +5,7 @@ from users.models import User, CategoryUser, GroupStudents
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     fields = ['password', 'photo', 'last_login', 'username', 'first_name', 'last_name', 'surname', 'email',
-              'phone_number', 'date_birth', 'cat_user', 'group_stud', 'courses'
+              'phone_number', 'date_birth', 'cat_user', 'group_stud', 'courses', 'is_curator'
               ]
     list_display = ('first_name', 'last_name', 'username', 'group_stud')
     list_display_links = ('first_name', 'username')
