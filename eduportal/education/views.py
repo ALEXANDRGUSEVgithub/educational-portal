@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -58,3 +59,20 @@ class MuGroup(ListView):
             return user.group_stud
         else:
             return None
+
+
+# Функции заглушки
+def teacher(request):
+    return HttpResponse("Для преподавателей")
+
+
+def students(request):
+    return HttpResponse("Для преподавателей")
+
+
+def tests(request):
+    return HttpResponse("Тесты")
+
+
+def library(request):
+    return HttpResponse("Библиотека")
