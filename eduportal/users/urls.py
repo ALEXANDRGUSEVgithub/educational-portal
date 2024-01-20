@@ -7,10 +7,12 @@ from django.urls import path, reverse_lazy
 app_name = 'users'
 
 urlpatterns = [
+    # Базовые url адреса
     path('login/', views.LoginUser.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', views.RegisterUser.as_view(), name='register'),
 
+    # Url адреса связанные с паролем
     path('password-reset/',
          PasswordResetView.as_view(
              template_name="users/password_reset_form.html",
@@ -29,11 +31,11 @@ urlpatterns = [
     path('password-reset/complete/',
          PasswordResetCompleteView.as_view(template_name="users/password_reset_complete.html"),
          name='password_reset_complete'),
-
     path('password-change/', views.UserPasswordChange.as_view(), name='password_change'),
     path('password-change/done/', PasswordChangeDoneView.as_view(template_name="users/password_change_done.html"),
          name="password_change_done"),
 
+    # Url адреса связанные с профилем пользователя
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('profile_edit/', views.ProfileUserEditView.as_view(), name='profile_edit'),
     path('profile_user/<int:user_id>', views.ProfileUsersView.as_view(), name='profile_user')

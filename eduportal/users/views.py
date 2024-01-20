@@ -9,12 +9,14 @@ from users.forms import LoginUserForm, RegisterUserForm, ProfileUserEditForm, Us
 from users.models import User
 
 
+# Класс для авторизации пользователей
 class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'users/login.html'
     extra_context = {'title': 'Авторизация'}
 
 
+# Класс для регистрации пользователей
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'users/register.html'
@@ -22,6 +24,7 @@ class RegisterUser(CreateView):
     success_url = reverse_lazy('users:login')
 
 
+# Класс для отображения профиля других пользователей
 class ProfileUsersView(DetailView):
     model = User
     template_name = 'users/user_profile.html'
@@ -38,6 +41,7 @@ class ProfileUsersView(DetailView):
         return get_object_or_404(User, pk=self.kwargs[self.pk_url_kwarg])
 
 
+# Класс для отображения профиля текущего пользователя
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
 
@@ -49,6 +53,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         return context
 
 
+# Класс для отображения страницы редактирования текущего пользователя
 class ProfileUserEditView(LoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = ProfileUserEditForm
@@ -65,6 +70,7 @@ class ProfileUserEditView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
 
+# Класс для отображения страницы со сменой пароля
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm
     success_url = reverse_lazy("users:password_change_done")

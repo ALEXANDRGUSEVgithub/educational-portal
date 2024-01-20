@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 from portal.models import ShowInfo, ArticlesAndNews
 
 
+# Класс для отображения постов на главной странице
 class PortalHome(ListView):
     model = ArticlesAndNews
     template_name = 'portal/index.html'
@@ -17,6 +18,7 @@ class PortalHome(ListView):
         return ArticlesAndNews.published.all()
 
 
+# Класс для отображения основной информации
 class ShowMainInfo(DetailView):
     model = ShowInfo
     template_name = 'portal/info.html'
@@ -29,6 +31,7 @@ class ShowMainInfo(DetailView):
         return context
 
 
+# Класс для отображения поста для чтения
 class ShowPost(DetailView):
     model = ArticlesAndNews
     template_name = 'portal/post.html'

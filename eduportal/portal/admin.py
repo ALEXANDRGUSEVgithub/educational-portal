@@ -6,6 +6,7 @@ admin.site.site_header = "Панель администрирования уче
 admin.site.index_title = "Управление порталом"
 
 
+# Класс для отображения модели ShowInfo в админ панели
 @admin.register(ShowInfo)
 class ShowInfoAdmin(admin.ModelAdmin):
     fields = ['title', 'slug', 'photo', 'file', 'content']
@@ -13,6 +14,7 @@ class ShowInfoAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
 
 
+# Класс для отображения модели ArticlesAndNews в админ панели
 @admin.register(ArticlesAndNews)
 class ArticlesAndNewsAdmin(admin.ModelAdmin):
     fields = ['title', 'slug', 'photo', 'file', 'content', 'is_published', 'cat']
@@ -27,7 +29,7 @@ class ArticlesAndNewsAdmin(admin.ModelAdmin):
     list_filter = ['is_published', 'cat']
     prepopulated_fields = {"slug": ("title",)}
 
-
+# Класс для отображения модели Category в админ панели
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', )

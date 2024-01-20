@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, Pass
 from django.core.validators import RegexValidator
 
 
+# Класс для формирования формы для авторизации пользователя
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин, E-mail или номер телефона (+79999999999)',
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -14,6 +15,7 @@ class LoginUserForm(AuthenticationForm):
         fields = ['username', 'password']
 
 
+# Класс для формирования формы для регистрации нового пользователя
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={'class': 'form-control'}), required=True)
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'class': 'form-control'}),
@@ -59,18 +61,21 @@ class RegisterUserForm(UserCreationForm):
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
+    # Проверка email на уникальность
     def clean_email(self):
         email = self.cleaned_data['email']
         if get_user_model().objects.filter(email=email).exists():
             raise forms.ValidationError("Такой E-mail уже существует!")
         return email
 
+    # Проверка логина на уникальность
     def clean_username(self):
         username = self.cleaned_data['username']
         if get_user_model().objects.filter(username=username).exists():
             raise forms.ValidationError("Такой E-mail уже существует!")
         return username
 
+    # Проверка номера телефона на уникальность
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
         if get_user_model().objects.filter(phone_number=phone_number).exists():
@@ -78,6 +83,7 @@ class RegisterUserForm(UserCreationForm):
         return phone_number
 
 
+# Класс для определения формы редактирования данных профиля пользователя
 class ProfileUserEditForm(forms.ModelForm):
     username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.CharField(disabled=True, label='E-mail', widget=forms.TextInput(attrs={'class': 'form-input'}))
@@ -101,6 +107,7 @@ class ProfileUserEditForm(forms.ModelForm):
         }
 
 
+# Класс для определения формы изменения пароля
 class UserPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     new_password1 = forms.CharField(label="Новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-input'}))

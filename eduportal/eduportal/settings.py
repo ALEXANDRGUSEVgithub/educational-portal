@@ -138,17 +138,23 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Переменные для определения базового пути к медиа-файлам
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
+# Определение новой модели пользователей
 AUTH_USER_MODEL = 'users.User'
 
+# Переменная для переброски на другую страницу после выхода из профиля
 LOGOUT_REDIRECT_URL = 'home'
 
+# Переменная для отображения писем в консоли
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# Переменная с адресом для стандартной фотографии пользователя
 DEFAULT_USER_IMAGE = MEDIA_URL + 'users/default.png'
 
+# Дополнительные бекенды для авторизации через номер телефона и email
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'users.authentication.EmailAuthBackend',

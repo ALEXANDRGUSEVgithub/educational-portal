@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 
+# Расширение базовой модели пользователей
 class User(AbstractUser):
     class Status(models.IntegerChoices):
         NO_CURATOR = 0, 'Не куратор'
@@ -22,9 +23,11 @@ class User(AbstractUser):
     is_curator = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
                                      default=Status.NO_CURATOR, verbose_name="Статус кураторства")
 
+    # Функция для получения полного имени пользователя (Фамилия Имя Отчество
     def get_full_name(self):
         return str(self.last_name + ' ' + self.first_name + ' ' + self.surname)
 
+    # Функция для получения url для объекта пользователя
     def get_absolute_url(self):
         return reverse('users:profile_user', kwargs={'user_id': self.pk})
 
@@ -32,6 +35,7 @@ class User(AbstractUser):
         return self.username
 
 
+# Класс для определения модели категории пользователей
 class CategoryUser(models.Model):
     class Meta:
         verbose_name = 'Категория пользователя'
@@ -43,6 +47,7 @@ class CategoryUser(models.Model):
         return self.title
 
 
+# Класс для определения модели групп студентов
 class GroupStudents(models.Model):
     class Meta:
         verbose_name = 'Группы студентов'

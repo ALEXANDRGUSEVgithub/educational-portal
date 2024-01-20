@@ -3,11 +3,13 @@ from django.db import models
 from django.urls import reverse
 
 
+# Класс для определения кастомного менеджера (посты отбираются в зависимости от статуса публикации)
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_published=ArticlesAndNews.Status.PUBLISHED)
 
 
+# Класс для определения модели для Основной информации
 class ShowInfo(models.Model):
 
     class Meta:
@@ -29,6 +31,7 @@ class ShowInfo(models.Model):
         return reverse('show_info', kwargs={'info_slug': self.slug})
 
 
+# Класс для определения модели постов
 class ArticlesAndNews(models.Model):
     class Status(models.IntegerChoices):
         DRAFT = 0, 'Черновик'
@@ -69,6 +72,7 @@ class ArticlesAndNews(models.Model):
         return self.title
 
 
+# Класс для определения модели категории Поста
 class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
@@ -81,6 +85,7 @@ class Category(models.Model):
         return self.title
 
 
+# Класс для определения модели необходимой для хранения файлов
 class UploadFiles(models.Model):
     file = models.FileField(upload_to='uploads_model')
 

@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
+# Класс для определения модели Курсов
 class Courses(models.Model):
     class Meta:
         verbose_name = 'Курс'
