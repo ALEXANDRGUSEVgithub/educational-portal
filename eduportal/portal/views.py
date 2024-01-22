@@ -1,6 +1,9 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+
+from portal.forms import AddPostForm
 from portal.models import ShowInfo, ArticlesAndNews
 
 
@@ -45,6 +48,19 @@ class ShowPost(DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(ArticlesAndNews.published, slug=self.kwargs[self.slug_url_kwarg])
+
+
+# Класс для добавления нового поста на сайта
+class AddPage(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    form_class = AddPostForm
+    template_name = 'portal/addpage.html'
+    title_page = 'Добавление статьи'
+    permission_required = 'women.add_women'
+
+    def form_valid(self, form):
+        w = form.save(commit=False)
+        w.author = self.request.user
+        return super().form_valid(form)
 
 
 
