@@ -6,7 +6,9 @@
         <div class="col-md-10">
             <h1 class="mb-4">{{ course.title }}</h1>
             <p>{{ course.text }}</p>
-            <p class="mb-2">Преподаватель: <a href="{{ course.teacher.get_absolute_url }}">{{ course.teacher.get_full_name }}</a></p>
+            {% if request.user.cat_user_id != 2 %}
+                <p class="mb-2">Преподаватель: <a href="{{ course.teacher.get_absolute_url }}">{{ course.teacher.get_full_name }}</a></p>
+            {% endif %}
         </div>
     </div>
 </div>

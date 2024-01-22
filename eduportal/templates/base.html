@@ -56,12 +56,16 @@
                     {% endif %}
                     {% if request.resolver_match.namespace == 'education' %}
                         {% if request.user.cat_user_id == 1 %}
-                            <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            {% if request.user.group_stud %}
+                                <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            {% endif %}
                             <li><a href="{% url 'education:for_students' %}">Для студентов</a></li>
-                            <<li><a href="{% url 'education:tests' %}">Тесты</a></li>
+                            <li><a href="{% url 'education:tests' %}">Тесты</a></li>
                             <li><a href="{% url 'education:library' %}">Библиотека</a></li>
                         {% elif request.user.cat_user_id == 2 %}
-                            <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            {% if request.user.group_stud %}
+                                <li><a href="{% url 'education:my_group' %}">Моя группа</a></li>
+                            {% endif %}
                             <li><a href="{% url 'education:for_teacher' %}">Для преподавателей</a></li>
                             <li><a href="{% url 'education:tests' %}">Тесты</a></li>
                             <li><a href="{% url 'education:library' %}">Библиотека</a></li>

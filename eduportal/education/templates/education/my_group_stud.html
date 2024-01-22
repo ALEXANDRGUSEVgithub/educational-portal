@@ -10,15 +10,16 @@
                         <li class="list-group-item border-0">
                             <p>Вы: <a href="{% url 'users:profile' %}" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a></p>
                         </li>
-                    {% else %}
+                    {% elif member.cat_user_id != 2 %}
                         <li class="list-group-item border-0">
                             <a href="{{ member.get_absolute_url }}" class="text-dark font-weight-bold stretched-link">{{ member.get_full_name }}</a>
                         </li>
-                    {% endif %}
-                    {% endfor %}
+                    {% else %}
                         <li class="list-group-item border-0">
                             <p>Ваш куратор: <a href="{{ my_group.curator.get_absolute_url }}" class="text-dark font-weight-bold stretched-link">{{ my_group.curator.get_full_name }}</a></p>
                         </li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
         </div>
     </div>

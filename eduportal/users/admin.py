@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
     fields = ['password', 'photo', 'last_login', 'username', 'first_name', 'last_name', 'surname', 'email',
               'phone_number', 'date_birth', 'cat_user', 'group_stud', 'courses', 'is_curator'
               ]
-    list_display = ('first_name', 'last_name', 'username', 'group_stud')
+    list_display = ('first_name', 'last_name', 'username', 'group_stud', 'cat_user')
     list_display_links = ('first_name', 'username')
 
 

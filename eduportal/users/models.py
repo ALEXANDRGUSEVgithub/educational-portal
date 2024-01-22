@@ -19,7 +19,7 @@ class User(AbstractUser):
                                    null=True)
     phone_number = models.CharField(max_length=100, unique=True, blank=True, verbose_name='Номер телефона')
     courses = models.ManyToManyField('education.Courses', related_name='course_teacher',
-                                     verbose_name='Курсы преподавателя')
+                                     verbose_name='Курсы преподавателя', null=True, blank=True)
     is_curator = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
                                      default=Status.NO_CURATOR, verbose_name="Статус кураторства")
 

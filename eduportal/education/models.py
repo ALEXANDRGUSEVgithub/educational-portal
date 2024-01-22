@@ -12,7 +12,7 @@ class Courses(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="Slug")
     text = models.TextField(blank=True, verbose_name='Основная информация')
     group = models.ManyToManyField('users.GroupStudents', related_name='courses_related', verbose_name='Группы')
-    teacher = models.OneToOneField('users.User', on_delete=models.SET_NULL, null=True, blank=True,
+    teacher = models.ForeignKey('users.User', on_delete=models.SET_NULL, null=True, blank=True,
                                    related_name='teacher', verbose_name='Преподаватель')
 
     def get_absolute_url(self):
