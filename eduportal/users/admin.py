@@ -1,15 +1,29 @@
-from django.contrib import admin
 from users.models import User, CategoryUser, GroupStudents
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 
-# Класс для представления модели User в админ панели
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    fields = ['password', 'photo', 'last_login', 'username', 'first_name', 'last_name', 'surname', 'email',
-              'phone_number', 'date_birth', 'cat_user', 'group_stud', 'courses', 'is_curator'
-              ]
-    list_display = ('first_name', 'last_name', 'username', 'group_stud', 'cat_user')
-    list_display_links = ('first_name', 'username')
+class CustomUserAdmin(BaseUserAdmin):
+    # Поля, которые будут отображаться в админке
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'surname', 'email', 'phone_number', 'date_birth', 'photo')}),
+        ('Permissions', {'fields': ('cat_user', 'group_stud', 'courses', 'is_curator', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login',)}),
+    )
+
+    # Поля, которые будут отображаться в списке
+    list_display = ('username', 'first_name', 'last_name', 'email', 'group_stud', 'cat_user', 'is_curator')
+
+    # Поля, которые будут использоваться в фильтрации
+    list_filter = ('cat_user', 'group_stud', 'courses', 'is_curator')
+
+    # Поля для поиска
+    search_fields = ('username', 'first_name', 'last_name', 'email')
+
+
+# Регистрируем модель User и новый класс администратора
+admin.site.register(User, CustomUserAdmin)
 
 
 # Класс для представления модели CategoryUser в админ панели

@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from portal.forms import AddPostForm
 from portal.models import ShowInfo, ArticlesAndNews
@@ -55,7 +55,7 @@ class AddPage(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = AddPostForm
     template_name = 'portal/addpage.html'
     title_page = 'Добавление статьи'
-    permission_required = 'women.add_women'
+    permission_required = 'portal.add_articlesandnews'
 
     def form_valid(self, form):
         w = form.save(commit=False)
@@ -63,4 +63,10 @@ class AddPage(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-
+# Класс для редактирования постов на сайте, но только для пользователей с нужным разрешением
+class UpdatePage(PermissionRequiredMixin, UpdateView):
+    model = ArticlesAndNews
+    form_class = AddPostForm
+    template_name = 'portal/addpage.html'
+    title_page = 'Редактирование поста'
+    permission_required = 'portal.change_articlesandnews'
