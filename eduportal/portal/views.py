@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
@@ -70,3 +70,11 @@ class UpdatePage(PermissionRequiredMixin, UpdateView):
     template_name = 'portal/addpage.html'
     title_page = 'Редактирование поста'
     permission_required = 'portal.change_articlesandnews'
+
+
+def page_not_found(request, exception):
+    return render(request, 'portal/page_not_found.html', status=404)
+
+
+def error500(request):
+    return render(request, 'portal/error500.html', status=500)

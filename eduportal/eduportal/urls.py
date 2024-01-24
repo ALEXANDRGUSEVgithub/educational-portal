@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 from eduportal import settings
+from portal.views import page_not_found, error500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,9 @@ urlpatterns = [
     path('education/', include('education.urls', namespace='education')),
     path("__debug__/", include("debug_toolbar.urls"))
 ]
+
+handler404 = page_not_found
+handler500 = error500
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
